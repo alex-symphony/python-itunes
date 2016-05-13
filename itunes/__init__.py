@@ -1,8 +1,8 @@
 #!/usr/bin/python
 """A python interface to search iTunes Store"""
 import os
-import urllib2, urllib
-import urlparse
+import urllib.request as urllib2, urllib
+from urllib.parse import urlparse
 import re
 try:
     import simplejson as json
@@ -91,7 +91,7 @@ class _Request(object):
                 response = self._download_response()
             response = clean_json(response)
             return json.loads(response)
-        except urllib2.HTTPError, e:
+        except urllib2.HTTPError as e:
             raise self._get_error(e.fp.read())
 
     def _get_cache_key(self):
