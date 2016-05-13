@@ -64,7 +64,7 @@ class _Request(object):
         data = []
         for name in self.params.keys():
             value = self.params[name]
-            if isinstance(value, int) or isinstance(value, float) or isinstance(value, long):
+            if isinstance(value, int) or isinstance(value, float) or isinstance(value, int):
                 value = str(value)
             try:
                 data.append('='.join((name, urllib.parse.quote_plus(value.replace('&amp;', '&').encode('utf8')))))
