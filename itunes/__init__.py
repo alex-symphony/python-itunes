@@ -89,7 +89,7 @@ class _Request(object):
                 response = self._get_cached_response()
             else:
                 response = self._download_response()
-            response = clean_json(response)
+            response = clean_json(str(response))
             return json.loads(response)
         except urllib2.HTTPError as e:
             raise self._get_error(e.fp.read())
