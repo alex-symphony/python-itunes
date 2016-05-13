@@ -67,13 +67,13 @@ class _Request(object):
             if isinstance(value, int) or isinstance(value, float) or isinstance(value, long):
                 value = str(value)
             try:
-                data.append('='.join((name, urllib.quote_plus(value.replace('&amp;', '&').encode('utf8')))))
+                data.append('='.join((name, urllib.parse.quote_plus(value.replace('&amp;', '&').encode('utf8')))))
             except UnicodeDecodeError:
-                data.append('='.join((name, urllib.quote_plus(value.replace('&amp;', '&')))))
+                data.append('='.join((name, urllib.parse.quote_plus(value.replace('&amp;', '&')))))
         data = '&'.join(data)
 
         url = HOST_NAME
-        parsed_url = urlparse.urlparse(url)
+        parsed_url = urlparse(url)
         if not parsed_url.scheme:
             url = "http://" + url
         url += self.method + '?'
